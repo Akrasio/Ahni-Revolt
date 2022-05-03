@@ -1,0 +1,20 @@
+{
+  "name": "ahni-revolt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "ahnidev": "github:MxsicXYZ/AhniDev",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.0",
+    "node-cron": "^3.0.0",
+    "revolt.js": "^6.0.0-rc.24"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Xynnix",
+  "license": "ISC",
+  "description": "A revolt.chat bot for mostly NSFW."
+}
