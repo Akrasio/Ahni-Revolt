@@ -221,6 +221,13 @@ function UploadFile(file, type) {
         });
     });
 }
+async function attach(url, fileName){
+    let fileUp = await UploadFile({
+        name: url.toString().endsWith("gif") ? "Attachment.gif" : "Attachment.png",
+        file: await createFileBuffer(res.result)
+    }).catch(() => undefined)
+    return fileUp;
+}
 async function createFileBuffer(url) {
     const res = Buffer.from(
       await (await axios.get(url, { responseType: "arraybuffer" })).data,
