@@ -228,9 +228,9 @@ async function createFileBuffer(url) {
     );
     return res;
 }
-async function attach(url) {
+async function attach(url, fileName) {
     let fileUp = await UploadFile({
-        name: url.toString().endsWith("gif") ? "Attachment.gif" : "Attachment.png",
+        name: url.toString().endsWith("gif") ? `${fileName || "Attachment"}.gif` : `${fileName || "Attachment"}.png`,
         file: await createFileBuffer(url)
     }).catch(() => undefined)
     return fileUp;
