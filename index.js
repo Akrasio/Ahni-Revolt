@@ -3,11 +3,11 @@ const { Collection } = require('discord.js');
 const cron = require("node-cron");
 const fs = require('fs');
 require("dotenv").config();
-const { setStatus, createFileBuffer, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniEndPoints, AhniRegExp } = require("./functions");
+const { attach, setStatus, createFileBuffer, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniEndPoints, AhniRegExp } = require("./functions");
 let client = new Client();
 client.cooldowns = new Collection();
 const { AhniClient } = require("ahnidev");
-const Ahni = new AhniClient({ KEY: process.env.AHNIKEY, url: "https://ahni.dev" });
+const Ahni = new AhniClient({ KEY: process.env.AHNIKEY, url: process.env.AhniURL || "https://ahni.dev" });
 
 client.once("ready", async () => {
     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
@@ -93,16 +93,12 @@ client.on("message", async (message) => {
         if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             await Ahni.nsfw(matched).then(async res => {
-                let fileUp = await UploadFile({
-                    name: "NSFW.png",
-                    file: await createFileBuffer(res.result)
-                }).catch(() => undefined)
+		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://ahni.dev", process.env.AhniURL2) : res.result, "NSFW")
                 const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${res.result})` }
                 m.edit({ content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
                     log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
                     log(Style.fg.red, err.message);
-                    return console.log(res)
                 })
             });
         })
@@ -115,10 +111,7 @@ client.on("message", async (message) => {
         if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             await Ahni.nsfw(matched).then(async res => {
-                let fileUp = await UploadFile({
-                    name: "NSFW.png",
-                    file: await createFileBuffer(res.result)
-                }).catch(() => undefined)
+		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://ahni.dev", process.env.AhniURL2) : res.result, "NSFW")
                 const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${res.result})` }
                 m.edit({ content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);

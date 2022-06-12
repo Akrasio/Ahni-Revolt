@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "ahnidev": "github:MxsicXYZ/AhniDev",
+    "ahnidev": "github:MxsicXYZ/ahnidev",
     "axios": "^0.27.2",
     "dotenv": "^16.0.0",
     "node-cron": "^3.0.0",
