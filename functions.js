@@ -221,7 +221,7 @@ function UploadFile(file, type) {
         });
     });
 }
-async function attach(url, fileName){
+async function attach(url){
     let fileUp = await UploadFile({
         name: url.toString().endsWith("gif") ? "Attachment.gif" : "Attachment.png",
         file: await createFileBuffer(res.result)
