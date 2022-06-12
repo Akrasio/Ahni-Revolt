@@ -60,16 +60,16 @@ async function renameChannel(client, { channelId: channelId }) {
     let hours = date_ob.getHours();
     let minutes = date_ob.getMinutes();
     let seconds = date_ob.getSeconds();
-	const channel = await client.channels.get(channelId);
-	if (channel){
-	channel.edit({ name: `${month}/${date}, ${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes} EST` }).catch(err => {
-        log(this.Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
-        log(this.Style.fg.red, err.message);
-        return;
-	})
-	} else {
-	return log(this.Style.fg.red, `Channel with ID ${channelId} was NOT found`)
-	}
+    const channel = await client.channels.get(channelId);
+    if (channel) {
+        channel.edit({ name: `${month}/${date}, ${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes} EST` }).catch(err => {
+            log(this.Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
+            log(this.Style.fg.red, err.message);
+            return;
+        })
+    } else {
+        return log(this.Style.fg.red, `Channel with ID ${channelId} was NOT found`)
+    }
 };
 async function setTimeStatus(client) {
     let date_ob = new Date();
@@ -150,8 +150,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -211,8 +211,8 @@ function UploadFile(file, type) {
                 case 0:
                     data = Buffer.concat(appendFormData("file", file.file, file.name));
                     return [4 /*yield*/, axios_1.default.post("https://autumn.revolt.chat/".concat(type), data, {
-                            headers: { "Content-Type": "multipart/form-data; boundary=".concat(boundary) },
-                        })];
+                        headers: { "Content-Type": "multipart/form-data; boundary=".concat(boundary) },
+                    })];
                 case 1: return [4 /*yield*/, (_a.sent()).data];
                 case 2:
                     response = (_a.sent());
@@ -221,7 +221,7 @@ function UploadFile(file, type) {
         });
     });
 }
-async function attach(url){
+async function attach(url) {
     let fileUp = await UploadFile({
         name: url.toString().endsWith("gif") ? "Attachment.gif" : "Attachment.png",
         file: await createFileBuffer(res.result)
@@ -230,13 +230,14 @@ async function attach(url){
 }
 async function createFileBuffer(url) {
     const res = Buffer.from(
-      await (await axios.get(url, { responseType: "arraybuffer" })).data,
+        await (await axios.get(url, { responseType: "arraybuffer" })).data,
     );
     return res;
-  }
+}
 module.exports.createFileBuffer = createFileBuffer;
 module.exports.UploadFile = UploadFile;
 module.exports.log = log;
+module.exports.attach = attach;
 module.exports.evalCmd = evalCmd;
 module.exports.setStatus = setStatus;
 module.exports.onCoolDown = onCoolDown;
