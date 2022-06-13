@@ -3,8 +3,8 @@ const axios = require("axios");
 require("dotenv").config();
 const util = require("util");
 
-module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri", "latex"];
-module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|yuri|latex`, "i");
+module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hass", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri", "latex"];
+module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hass|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|yuri|latex`, "i");
 module.exports.Style = Style = {
     reset: "\x1b[0m",
     bright: "\x1b[1m",
@@ -84,7 +84,7 @@ async function setTimeStatus(client) {
     if (6 <= hours && hours <= 12) state = "Idle";
     if (13 <= hours && hours <= 21) state = "Online";
     if (22 <= hours && hours <= 23) state = "Busy";
-    return setStatus(client, { text: `${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes}` + " EST | =help", presence: state })
+    return setStatus(client, { text: `${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes}` + `EST | ${process.env.PREFIX}help`, presence: state })
 };
 
 function onCoolDown(message, command) {
