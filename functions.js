@@ -3,8 +3,8 @@ const axios = require("axios");
 require("dotenv").config();
 const util = require("util");
 
-module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri", "latex"];
-module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|yuri|latex`, "i");
+module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hass", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri", "latex"];
+module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hass|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|yuri|latex`, "i");
 module.exports.Style = Style = {
     reset: "\x1b[0m",
     bright: "\x1b[1m",
