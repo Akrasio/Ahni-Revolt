@@ -3,11 +3,13 @@ const { Collection } = require('discord.js');
 const cron = require("node-cron");
 const fs = require('fs');
 require("dotenv").config();
-const { attach, setStatus, createFileBuffer, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniEndPoints, AhniRegExp } = require("./functions");
+const { attach, setStatus, createFileBuffer, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniEndPoints, AhniRegExp, TestRegExp } = require("./functions");
 let client = new Client();
 client.cooldowns = new Collection();
 const { AhniClient } = require("ahnidev");
 const Ahni = new AhniClient({ KEY: process.env.AHNIKEY, url: process.env.AhniURL || "https://ahni.dev" });
+const { RandomPHUB } = require('discord-phub');
+const nsfw = new RandomPHUB(unique = false);
 
 client.once("ready", async () => {
     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
@@ -87,22 +89,51 @@ client.on("message", async (message) => {
         log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
         log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"));
         if (!message.channel.nsfw) return message.channel.sendMessage("This channel is __not__ an NSFW marked channel!");
-        const embed = { colour: "#FF0000", description: `Please provide one of the following args:\n \`${AhniEndPoints.join("\`, \`")}\`` }
+        const embed = { colour: "#FF0000", description: `Please provide one of the following args:\n \`${TestEndPoints.join("\`, \`")}\`, \`${AhniEndPoints.join("\`, \`")}\`` }
         if (args.length < 1) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         const matched = args[0].match(AhniRegExp)
-        if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
-        return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
-            await Ahni.nsfw(matched).then(async res => {
+        const matchedNew = args[0].match(TestRegExp)
+        if (!matched && !matchedNew) return message.channel.sendMessage({ content: " ", embeds: [embed] });
+        if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
+            return await Ahni.nsfw(matched).then(async res => {
 		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://ahni.dev", process.env.AhniURL2) : res.result, "NSFW")
                 const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${res.result})` }
-                m.edit({ content: " ", embeds: [embed] }).catch(err => {
+                return m.edit({ content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
                     log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
                     log(Style.fg.red, err.message);
                 })
             });
         })
+            if (matchedNew) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
+		console.log(nsfw.getRandomInCategory(matchedNew[0]).url)
+		const fileUp = await attach(nsfw.getRandomInCategory(matchedNew[0]).url, "NSFW")
+                const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${nsfw.getRandomInCategory(matched).url})` }
+                return m.edit({ content: " ", embeds: [embed] }).catch(err => {
+                    log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
+                    log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
+                    log(Style.fg.red, err.message);
+                })
+            });
     };
+    if (commandName.match(TestRegExp)) {
+        log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
+        log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"));
+        if (!message.channel.nsfw) return message.channel.sendMessage("This channel is __not__ an NSFW marked channel!");
+        const matched = commandName.match(TestRegExp)[0]
+	if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
+        return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
+		const fileUp = await attach(nsfw.getRandomInCategory(matched).url, "NSFW")
+                const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${nsfw.getRandomInCategory(matched).url})` }
+                m.edit({ content: " ", embeds: [embed] }).catch(err => {
+                    log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
+                    log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
+                    log(Style.fg.red, err.message);
+                    return console.log(res)
+                })
+            });
+    }
+
     if (commandName.match(AhniRegExp)) {
         log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
         log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"));

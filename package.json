@@ -5,6 +5,7 @@
   "dependencies": {
     "ahnidev": "github:MxsicXYZ/ahnidev",
     "axios": "^0.27.2",
+    "discord-phub": "^1.0.7",
     "dotenv": "^16.0.0",
     "node-cron": "^3.0.0",
     "revolt.js": "^6.0.0-rc.24"
