@@ -4,8 +4,8 @@ require("dotenv").config();
 const util = require("util");
 
 module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hass", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri", "latex"];
-module.exports.TestEndPoints = TestEndPoints = ["aesthetic","cosplay","creampie","ebony","femdom","furry","goth","pegging","oral","public","squirting","tease","toys","uniform"]
-module.exports.TestRegExp = TestRegExp = new RegExp(`aesthetic|cosplay|creampie|ebony|femdom|furry|goth|pegging|oral|public|squirting|tease|toys|uniform`, "i");
+module.exports.TestEndPoints = TestEndPoints = ["aesthetic","cosplay","creampie","ebony","femdom","furry","goth","pegging","oral","public","squirting","tease","toys","uniform", "interracial", "lgbt-gay", "lgbt-lesbian", "milf", "pornstar", "tattoos-piercings"]
+module.exports.TestRegExp = TestRegExp = new RegExp(`aesthetic|cosplay|creampie|ebony|femdom|furry|goth|pegging|oral|public|squirting|tease|toys|uniform|interracial|lgbt-gay|lgbt-lesbian|milf|pornstar|tattoos-piercings`, "i");
 module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hass|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|yuri|latex`, "i");
 module.exports.Style = Style = {
     reset: "\x1b[0m",
