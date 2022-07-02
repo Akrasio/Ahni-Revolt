@@ -9,7 +9,7 @@ client.cooldowns = new Collection();
 const { AhniClient } = require("ahnidev");
 const Ahni = new AhniClient({ KEY: process.env.AHNIKEY, url: process.env.AhniURL || "https://ahni.dev" });
 const { RandomPHUB } = require('discord-phub');
-const nsfw = new RandomPHUB(unique = false);
+const nsfw = new RandomPHUB(unique = true);
 
 client.once("ready", async () => {
     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
