@@ -3,13 +3,16 @@ const Embed = require("./utils/emb");
 const { Collection } = require('discord.js');
 const cron = require("node-cron");
 const fs = require('fs');
+const delay = require("delay");
+const Rev = require('revoltbots.js');
 require("dotenv").config();
-const { attach, setStatus, createFileBuffer, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniEndPoints, AhniRegExp} = require("./functions");
+const api = new Rev.Client(process.env.rblapi);
+const { attach, setStatus, createFileBuffer, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniActEndPoints, AhniActRegExp, AhniEndPoints, AhniRegExp} = require("./functions");
 let client = new Client();
 client.cooldowns = new Collection();
 const { AhniClient } = require("ahnidev");
 const Ahni = new AhniClient({ KEY: process.env.AHNIKEY, url: process.env.AhniURL || "https://kyra.tk" });
-
+client.ahni = Ahni;
 client.once("ready", async () => {
     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
     log(Style.bg.blue, `Logged in as ${client.user.username}! | ${client.servers.size} Servers!`);
@@ -22,10 +25,20 @@ cron.schedule("* * * * *", () => {
     if (!process.env.TimeChannel) return;
     renameChannel(client, { channelId: process.env["TimeChannel"] });
 })
+client.on("member/join", async(member)=>{
+	if (member._id.server !== process.env.supportId) return;
+        await member.edit({roles: [process.env.joinRole]});
+})
+client.on("ready", async()=>{
+	api.autopostStats(client).then(result => {
+    		console.log(result)
+	});
+})
 client.on("message", async (message) => {
+message.delay = delay;
     if (message.author.bot || message.system || !message.content) return;
+    if (message.content.toUpperCase().startsWith(`<@${client.user._id}>`)) return message.channel.sendMessage(`My prefix is \`=\``);
     if (!message.content.startsWith(process.env.PREFIX)) return;
-
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
     if (!commandName) return;
@@ -57,6 +70,14 @@ client.on("message", async (message) => {
         log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
         return log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
     };
+    if (commandName == "vote") {
+        log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
+	return message.reply("Vote here on [Revolt Bot List](<https://revoltbots.org/bots/01FEYFMPWJSJZ0671REAQMP6TY/vote>)").catch(err=>{
+            log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
+            log(Style.fg.red, err.message);
+		return;
+	})
+    }
     if (commandName === "av" || commandName == "avatar") {
         const targetName = (message.mentions?.length >= 1 ? message.mentions[0]?.username : message.author.username)
         const target = message.mentions?.length >= 1 ? message.mentions[0]?.generateAvatarURL({ size: 4096 }, true) ? message.mentions[0]?.generateAvatarURL({ size: 4096 }, true) : message.mentions[0]?.defaultAvatarURL : message.member.generateAvatarURL({ size: 4096 }, true) ? message.member.generateAvatarURL({ size: 4096 }, true) : message.member.generateAvatarURL({ size: 4096 }, true) ? message.author.generateAvatarURL({ size: 4096 }, true) : message.author.generateAvatarURL({ size: 4096 }, true) ? message.author.generateAvatarURL({ size: 4096 }, true) : message.member.user.defaultAvatarURL
@@ -73,7 +94,7 @@ client.on("message", async (message) => {
         return log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
     };
     if (commandName === "help") {
-        const embedHelp = { title: client.user.username + " | commands", colour: "#AEFAEF", description: `| Name | Description|\n| - | - |\n| help | Sends the commands list! |\n| nsfw | Sends requested NSFW image from Ahni.dev API |\n| ping | Pong? |\n| contact | Send a message to the developers about a bug or image issue |\n| quote | Quote a message from this channel.|\n| avatar | Get a members Server or Global avatar.` }
+        const embedHelp = { title: client.user.username + " | commands", colour: "#AEFAEF", description: `| Name | Description|\n| - | - |\n| help | Sends the commands list! |\n| nsfw | Sends requested NSFW image from Ahni.dev API |\n| ping | Pong? |\n| contact | Send a message to the developers about a bug or image issue |\n| quote | Quote a message from this channel.|\n| avatar | Get a members Server or Global avatar.|\n| action | Do a thing with or to another member. |\n| vote | Vote for me on the bot list! |` }
         await message.channel.sendMessage({ content: " ", embeds: [embedHelp] }).catch(err => {
             log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
             log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
@@ -91,13 +112,34 @@ client.on("message", async (message) => {
         const embed = { colour: "#FF0000", description: `Please provide one of the following args:\n \`${AhniEndPoints.join("\`, \`")}\`` }
         if (args.length < 1) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         const matched = args[0].match(AhniRegExp)
-        const matchedNew = args[0].match(TestRegExp)
-        if (!matched && !matchedNew) return message.channel.sendMessage({ content: " ", embeds: [embed] });
+        if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             return await Ahni.nsfw(matched).then(async res => {
 		const a = res.result.toString().split("/")[7]
 		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://kyra.tk", process.env.AhniURL2) : res.result, a)
                 const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${res.result})` }
+                return m.edit({ content: " ", embeds: [embed] }).catch(err => {
+                    log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
+                    log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
+                    log(Style.fg.red, err.message);
+                })
+            });
+        })
+    };
+
+    if (commandName == "action") {
+        log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
+        log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"));
+        const embed = { colour: "#FF0000", description: `Please provide one of the following args:\n \`${AhniActEndPoints.join("\`, \`")}\`` }
+        if (args.length < 1) return message.channel.sendMessage({ content: " ", embeds: [embed] });
+        const matched = args[0].match(AhniActRegExp);
+	if (message.mention_ids == null) return message.reply({content: "Please provide a member!"});
+        if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
+        if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
+            return await Ahni.others(matched).then(async res => {
+		const a = matched[0]+".gif";
+		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://kyra.tk", process.env.AhniURL2) : res.result, a)
+                const embed = { media: fileUp, colour: "#00FFFF", description: `<@${message.mention_ids[0]}> is ${matched}ed by <@${message.author_id}>` }
                 return m.edit({ content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
                     log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
@@ -128,7 +170,7 @@ client.on("message", async (message) => {
         })
     }
     if (commandName == "contact") {
-        if (args.length < 5) message.reply("Please describe your issue in more than 5 Words!")
+        if (args.length < 5) return message.reply("Please describe your issue in more than 5 Words!")
         log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
         log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
         return client.channels.get(process.env.REPORTS).sendMessage(`New Contact:\n User: ${message.author.username}\n[${message.author_id}]\n\n> Message: ${args.join(" ")}`).catch(err => {
@@ -177,22 +219,6 @@ process.on("unhandledRejection", (err) => log(Style.fg.red, `${err.message}`));
 process.on("uncaughtException", (err) => log(Style.fg.green, `${err.message}`));
 process.on("warning", (err) => log(Style.fg.yellow, `${err.message}`));
 process.on("error", (err) => log(Style.fg.red, `${err.message}`));
+
+
 client.loginBot(process.env.BOT_TOKEN);
-
-const express = require("express");
-const { collectDefaultMetrics, register } =require('prom-client');
-
-collectDefaultMetrics();
-
-const app = express();
-
-app.get('/metrics', async (_req, res) => {
-  try {
-    res.set('Content-Type', register.contentType);
-    res.end(await register.metrics());
-  } catch (err) {
-    res.status(500).end(err);
-  }
-});
-
-app.listen(4001, '0.0.0.0');

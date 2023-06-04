@@ -2,8 +2,10 @@ const { Collection } = require('discord.js');
 const axios = require("axios");
 require("dotenv").config();
 const util = require("util");
-module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hass", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri", "latex"];
-module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hass|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|yuri|latex`, "i");
+module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hass", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri","tentacle", "latex"];
+module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hass|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|tentacle|yuri|latex`, "i");
+module.exports.AhniActEndPoints = AhniActEndPoints = ["boop","bonk","kiss","hug"];
+module.exports.AhniActRegExp = AhniActRegExp = new RegExp(`boop|bonk|kiss|hug`, "i");
 module.exports.Style = Style = {
     reset: "\x1b[0m",
     bright: "\x1b[1m",
@@ -123,14 +125,21 @@ function onCoolDown(message, command) {
 
 async function evalCmd(message, code) {
     try {
+	let client = message.client;
         let evaled = eval(code);
         const TOKEN = new RegExp(`${process.env.BOT_TOKEN}`, "gi");
         const OWNERID = new RegExp(`${process.env.OWNERID}`, "gi");
         if (typeof evaled !== "string") evaled = await util.inspect(evaled);
         const embeded = { icon_url: message.author.generateAvatarURL({ size: 512 }), title: message.author.username + " | Eval", description: `${evaled.replace(TOKEN, "N0Tt0DaYB0ZoxD")}`, colour: "#33ff00" }
-        message.channel.sendMessage({ content: " ", embeds: [embeded] });
+        message.channel.sendMessage({ content: " ", embeds: [embeded] }).then(async msg =>{
+		await message.delay(5000);
+		return msg.delete();
+	})
     } catch (err) {
-        message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${(err)}\n\`\`\``);
+        message.channel.sendMessage(`__ERROR__:\n\n\`\`\`xl\n${(err)}\n\`\`\``).then(async msg=>{
+	await message.delay(4000)
+		msg.delete()
+	})
     }
 }
 
