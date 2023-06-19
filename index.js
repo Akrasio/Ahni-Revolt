@@ -13,17 +13,18 @@ client.cooldowns = new Collection();
 const { AhniClient } = require("ahnidev");
 const Ahni = new AhniClient({ KEY: process.env.AHNIKEY, url: process.env.AhniURL || "https://kyra.tk" });
 client.ahni = Ahni;
+client.rbl = api;
 client.once("ready", async () => {
     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
     log(Style.bg.blue, `Logged in as ${client.user.username}! | ${client.servers.size} Servers!`);
     if (!process.env.TimeChannel) return;
-    renameChannel(client, { channelId: process.env["TimeChannel"] });
+//    renameChannel(client, { channelId: process.env["TimeChannel"] });
 });
 
 cron.schedule("* * * * *", () => {
     setTimeStatus(client);
     if (!process.env.TimeChannel) return;
-    renameChannel(client, { channelId: process.env["TimeChannel"] });
+//    renameChannel(client, { channelId: process.env["TimeChannel"] });
 })
 client.on("member/join", async(member)=>{
 	if (member._id.server !== process.env.supportId) return;
@@ -33,6 +34,7 @@ client.on("ready", async()=>{
 	api.autopostStats(client).then(result => {
     		console.log(result)
 	});
+
 })
 client.on("message", async (message) => {
 message.delay = delay;
@@ -42,6 +44,7 @@ message.delay = delay;
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
     if (!commandName) return;
+    if (!message.channel.havePermission("SendMessage")) return;
     if (onCoolDown(message, commandName)) {
         const cool = { colour: "#FF0000", description: `❌ Please wait ${require("ms")(Math.round(onCoolDown(message, commandName) * 1000))} before reusing the \`${commandName}\` command` }
         return message.channel.sendMessage({ content: " ", embeds: [cool] }).then(msg => {
@@ -111,7 +114,7 @@ message.delay = delay;
         if (!message.channel.nsfw) return message.channel.sendMessage("This channel is __not__ an NSFW marked channel!");
         const embed = { colour: "#FF0000", description: `Please provide one of the following args:\n \`${AhniEndPoints.join("\`, \`")}\`` }
         if (args.length < 1) return message.channel.sendMessage({ content: " ", embeds: [embed] });
-        const matched = args[0].match(AhniRegExp)
+        const matched = args[0].toLowerCase().match(AhniRegExp)
         if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             return await Ahni.nsfw(matched).then(async res => {
@@ -132,7 +135,7 @@ message.delay = delay;
         log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"));
         const embed = { colour: "#FF0000", description: `Please provide one of the following args:\n \`${AhniActEndPoints.join("\`, \`")}\`` }
         if (args.length < 1) return message.channel.sendMessage({ content: " ", embeds: [embed] });
-        const matched = args[0].match(AhniActRegExp);
+        const matched = args[0].toLowerCase().match(AhniActRegExp);
 	if (message.mention_ids == null) return message.reply({content: "Please provide a member!"});
         if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
@@ -215,10 +218,10 @@ message.delay = delay;
 	}
 });
 
-process.on("unhandledRejection", (err) => log(Style.fg.red, `${err.message}`));
-process.on("uncaughtException", (err) => log(Style.fg.green, `${err.message}`));
-process.on("warning", (err) => log(Style.fg.yellow, `${err.message}`));
-process.on("error", (err) => log(Style.fg.red, `${err.message}`));
+process.on("unhandledRejection", (err) => console.log(err))//log(Style.fg.red, `Heck!: ${err}`));
+process.on("uncaughtException", (err) => log(Style.fg.green, `Heck: ${err}`));
+process.on("warning", (err) => log(Style.fg.yellow, `${err}`));
+process.on("error", (err) => console.log(err))
 
 
-client.loginBot(process.env.BOT_TOKEN);
+client.loginBot(process.env.BOT_TOKEN)

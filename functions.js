@@ -2,8 +2,8 @@ const { Collection } = require('discord.js');
 const axios = require("axios");
 require("dotenv").config();
 const util = require("util");
-module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hass", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "trap", "yuri","tentacle", "latex"];
-module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hass|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|trap|tentacle|yuri|latex`, "i");
+module.exports.AhniEndPoints = AhniEndPoints = ["ass", "assgif", "athighs", "bbw", "bdsm", "blow", "boobs", "feet", "furfuta", "furgif", "futa", "gifs", "hass", "hboobs", "hentai", "hfeet", "neko", "irlfemb", "jackopose", "milk", "pantsu", "sex", "slime", "thighs", "femboy", "yuri","tentacle", "latex"];
+module.exports.AhniRegExp = AhniRegExp = new RegExp(`assgif|ass|athighs|bbw|bdsm|blow|boobs|feet|furfuta|furgif|futa|gifs|hass|hboobs|hentai|hfeet|neko|irlfemb|jackopose|milk|pantsu|sex|slime|thighs|femboy|tentacle|yuri|latex`, "i");
 module.exports.AhniActEndPoints = AhniActEndPoints = ["boop","bonk","kiss","hug"];
 module.exports.AhniActRegExp = AhniActRegExp = new RegExp(`boop|bonk|kiss|hug`, "i");
 module.exports.Style = Style = {
@@ -77,7 +77,7 @@ async function setTimeStatus(client) {
     let date = ("0" + date_ob.getDate()).slice(-2);
     let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
     let year = date_ob.getFullYear();
-    let hours = date_ob.getHours();
+    let hours = date_ob.getHours()+1;
     let minutes = date_ob.getMinutes();
     let seconds = date_ob.getSeconds();
     let state = "";
@@ -219,7 +219,7 @@ function UploadFile(file, type) {
                 case 0:
                     data = Buffer.concat(appendFormData("file", file.file, file.name));
                     return [4 /*yield*/, axios_1.default.post("https://autumn.revolt.chat/".concat(type), data, {
-                        headers: { "Content-Type": "multipart/form-data; boundary=".concat(boundary) },
+                        headers: { "User-Agent": process.env.headers, "Cookie": process.env.clearance, "Content-Type": "multipart/form-data; boundary=".concat(boundary) },
                     })];
                 case 1: return [4 /*yield*/, (_a.sent()).data];
                 case 2:
