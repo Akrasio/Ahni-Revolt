@@ -77,7 +77,7 @@ async function setTimeStatus(client) {
     let date = ("0" + date_ob.getDate()).slice(-2);
     let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
     let year = date_ob.getFullYear();
-    let hours = date_ob.getHours()+1;
+    let hours = date_ob.getHours();
     let minutes = date_ob.getMinutes();
     let seconds = date_ob.getSeconds();
     let state = "";
@@ -85,7 +85,7 @@ async function setTimeStatus(client) {
     if (6 <= hours && hours <= 12) state = "Idle";
     if (13 <= hours && hours <= 21) state = "Online";
     if (22 <= hours && hours <= 23) state = "Busy";
-    return setStatus(client, { text: `${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes}` + `EST | ${process.env.PREFIX}help`, presence: state })
+//    return await setStatus(client, { text: `${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes}` + `EST | ${process.env.PREFIX}help`, presence: state })
 };
 
 function onCoolDown(message, command) {
@@ -219,7 +219,7 @@ function UploadFile(file, type) {
                 case 0:
                     data = Buffer.concat(appendFormData("file", file.file, file.name));
                     return [4 /*yield*/, axios_1.default.post("https://autumn.revolt.chat/".concat(type), data, {
-                        headers: { "User-Agent": process.env.headers, "Cookie": process.env.clearance, "Content-Type": "multipart/form-data; boundary=".concat(boundary) },
+                        headers: { "Content-Type": "multipart/form-data; boundary=".concat(boundary) },
                     })];
                 case 1: return [4 /*yield*/, (_a.sent()).data];
                 case 2:

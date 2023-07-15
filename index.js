@@ -1,13 +1,13 @@
 const { Client } = require("revolt.js");
-const Embed = require("./utils/emb");
 const { Collection } = require('discord.js');
 const cron = require("node-cron");
 const fs = require('fs');
 const delay = require("delay");
 const Rev = require('revoltbots.js');
+const Uploader = require("revolt-uploader");
 require("dotenv").config();
 const api = new Rev.Client(process.env.rblapi);
-const { attach, setStatus, createFileBuffer, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniActEndPoints, AhniActRegExp, AhniEndPoints, AhniRegExp} = require("./functions");
+const { attach, createFileBuffer, setStatus, onCoolDown, renameChannel, setTimeStatus, UploadFile, log, evalCmd, Style, AhniActEndPoints, AhniActRegExp, AhniEndPoints, AhniRegExp} = require("./functions");
 let client = new Client();
 client.cooldowns = new Collection();
 const { AhniClient } = require("ahnidev");
@@ -24,7 +24,7 @@ client.once("ready", async () => {
 cron.schedule("* * * * *", () => {
     setTimeStatus(client);
     if (!process.env.TimeChannel) return;
-//    renameChannel(client, { channelId: process.env["TimeChannel"] });
+    renameChannel(client, { channelId: process.env["TimeChannel"] });
 })
 client.on("member/join", async(member)=>{
 	if (member._id.server !== process.env.supportId) return;
@@ -118,10 +118,10 @@ message.delay = delay;
         if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             return await Ahni.nsfw(matched).then(async res => {
-		const a = res.result.toString().split("/")[7]
-		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://kyra.tk", process.env.AhniURL2) : res.result, a)
+		const a = "SPOILER_"+res.result.toString().split("/")[7]
+		const fileUp = await attach(res.result, a)
                 const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${res.result})` }
-                return m.edit({ content: " ", embeds: [embed] }).catch(err => {
+                return m.edit({ files: fileUp, content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
                     log(Style.bg.red, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"))
                     log(Style.fg.red, err.message);
@@ -140,7 +140,7 @@ message.delay = delay;
         if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             return await Ahni.others(matched).then(async res => {
-		const a = matched[0]+".gif";
+		const a = "SPOILER_"+matched[0]+".gif";
 		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://kyra.tk", process.env.AhniURL2) : res.result, a)
                 const embed = { media: fileUp, colour: "#00FFFF", description: `<@${message.mention_ids[0]}> is ${matched}ed by <@${message.author_id}>` }
                 return m.edit({ content: " ", embeds: [embed] }).catch(err => {
@@ -160,7 +160,7 @@ message.delay = delay;
         if (!matched) return message.channel.sendMessage({ content: " ", embeds: [embed] });
         return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             await Ahni.nsfw(matched).then(async res => {
-		const a = res.result.toString().split("/")[7]
+		const a = "SPOILER_"+res.result.toString().split("/")[7]
 		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://ahni.dev", process.env.AhniURL2) : res.result, a)
                 const embed = { media: fileUp, colour: "#00FFFF", description: `[Image URL](${res.result})` }
                 m.edit({ content: " ", embeds: [embed] }).catch(err => {
@@ -212,9 +212,9 @@ message.delay = delay;
         log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
         log(Style.fg.green, "User: " + message.author.username + ` [${message.author_id}] ` + " | Command: " + commandName + " | Args: " + (args?.join(" ") || "NONE"));
 		const embed = { colour: "#BFDBFF", title: content2.author.username, icon_url: content2.author.generateAvatarURL({ size: 512 }), description: `[${content2.content}](https://app.revolt.chat/server/${message.channel.server._id}/channel/${content2.channel_id}/${content2._id})` };
-        	const Embed2 = new Embed().setColor("#BFDBFF").setTitle(content2.author.username).setIcon(content2.author.generateAvatarURL({ size: 512 })).setDescription(`[${content2.content}](https://app.revolt.chat/server/${message.channel.server._id}/channel/${content2.channel_id}/${content2._id})`);
+        	//const Embed2 = new Embed().setColor("#BFDBFF").setTitle(content2.author.username).setIcon(content2.author.generateAvatarURL({ size: 512 })).setDescription(`[${content2.content}](https://app.revolt.chat/server/${message.channel.server._id}/channel/${content2.channel_id}/${content2._id})`);
 		message.reply({content: " ", embeds: [Embed2]})
-		console.log(Embed2)
+		console.log(embed)
 	}
 });
 

@@ -12,6 +12,7 @@
     "node-cron": "^3.0.0",
     "prom-client": "^14.2.0",
     "revolt-api": "^0.6.1",
+    "revolt-uploader": "^1.1.1",
     "revolt.js": "^6.0.20",
     "revoltbots.js": "^1.0.4",
     "rolt.js": "^1.0.0"
