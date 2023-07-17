@@ -85,7 +85,7 @@ async function setTimeStatus(client) {
     if (6 <= hours && hours <= 12) state = "Idle";
     if (13 <= hours && hours <= 21) state = "Online";
     if (22 <= hours && hours <= 23) state = "Busy";
-//    return await setStatus(client, { text: `${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes}` + `EST | ${process.env.PREFIX}help`, presence: state })
+    return await setStatus(client, { text: `${hours <= 9 ? "0" + hours : hours}:${minutes <= 9 ? "0" + minutes : minutes}` + `EST | ${process.env.PREFIX}help`, presence: state })
 };
 
 function onCoolDown(message, command) {
