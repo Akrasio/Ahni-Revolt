@@ -1,0 +1,4 @@
+revolt.py
+psutil
+python-dotenv
+filetype
