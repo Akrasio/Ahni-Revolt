@@ -12,8 +12,8 @@ class Config:
     revolt_token: str
     revolt_prefix: str
     revolt_owner_ids: list[str] = None
-    lewds_api_url: str = None
-    lewds_api_key: str = None
+    lewds_api_url: str = "None"
+    lewds_api_key: str = "None"
     
     @classmethod
     def from_dict(self, **kwargs) -> "Config":
