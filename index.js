@@ -30,12 +30,12 @@ client.on("member/join", async(member)=>{
 	if (member._id.server !== process.env.supportId) return;
         await member.edit({roles: [process.env.joinRole]});
 })
-client.on("ready", async()=>{
+/*client.on("ready", async()=>{
 	api.autopostStats(client).then(result => {
     		console.log(result)
 	});
-
 })
+*/
 client.on("message", async (message) => {
 message.delay = delay;
     if (message.author.bot || message.system || !message.content) return;
