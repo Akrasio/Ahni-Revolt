@@ -18,7 +18,7 @@ client.once("ready", async () => {
     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
     log(Style.bg.blue, `Logged in as ${client.user.username}! | ${client.servers.size} Servers!`);
     if (!process.env.TimeChannel) return;
-//    renameChannel(client, { channelId: process.env["TimeChannel"] });
+    renameChannel(client, { channelId: process.env["TimeChannel"] });
 });
 
 cron.schedule("* * * * *", () => {
