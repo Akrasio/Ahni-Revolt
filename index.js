@@ -119,7 +119,7 @@ message.delay = delay;
         if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             return await Ahni.nsfw(matched).then(async res => {
 		const a = "SPOILER_"+res.result.toString().split("/")[7]
-		const fileUp = await attach(res.result, a)
+		const fileUp = await attach(res.result.replace("kyra.tk","locahost"), a)
                 const embed = { media: fileUp, colour: "#00FFFF"}//, description: `[Image URL](${res.result})` }
                 return m.edit({ files: fileUp, content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
@@ -162,7 +162,7 @@ message.delay = delay;
             await Ahni.nsfw(matched).then(async res => {
 		console.log(res)
 		const a = "SPOILER_"+res.result.toString().split("/")[7]
-		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://ahni.dev", process.env.AhniURL2) : res.result, a)
+		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://kyra.tk", process.env.AhniURL2) : res.result, a)
                 const embed = { media: fileUp, colour: "#00FFFF"}//, description: `[Image URL](${res.result})` }
                 m.edit({ content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
