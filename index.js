@@ -40,7 +40,6 @@ client.once("ready", async()=>{
 client.on("message", async (message) => {
 message.delay = delay;
     if (message.author.bot || message.system || !message.content) return;
-    //if (message.content.toUpperCase().startsWith(`<@${client.user._id}>`)) return message.channel.sendMessage(`My prefix is \`=\``);
     let prefix = process.env.PREFIX;
     if (message.content.startsWith(process.env.PREFIX)){
 	prefix = process.env.PREFIX
