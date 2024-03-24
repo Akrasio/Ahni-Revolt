@@ -30,18 +30,25 @@ client.on("member/join", async(member)=>{
 	if (member._id.server !== process.env.supportId) return;
         await member.edit({roles: [process.env.joinRole]});
 })
-/*client.on("ready", async()=>{
-	api.autopostStats(client).then(result => {
-    		console.log(result)
+
+client.once("ready", async()=>{
+	api.autopostStats(client.servers.size.toString()).then(result => {
+    		console.log("RBL : "+result)
 	});
 })
-*/
+
 client.on("message", async (message) => {
 message.delay = delay;
     if (message.author.bot || message.system || !message.content) return;
-    if (message.content.toUpperCase().startsWith(`<@${client.user._id}>`)) return message.channel.sendMessage(`My prefix is \`=\``);
-    if (!message.content.startsWith(process.env.PREFIX)) return;
-    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
+    //if (message.content.toUpperCase().startsWith(`<@${client.user._id}>`)) return message.channel.sendMessage(`My prefix is \`=\``);
+    let prefix = process.env.PREFIX;
+    if (message.content.startsWith(process.env.PREFIX)){
+	prefix = process.env.PREFIX
+    } else if (message.content.startsWith(process.env.PREFIX2)){
+	prefix = process.env.PREFIX2
+    }
+    if (!message.content.toLowerCase().startsWith(prefix.toLowerCase())) return;
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
     if (!commandName) return;
     if (!message.channel.havePermission("SendMessage")) return;
@@ -119,7 +126,7 @@ message.delay = delay;
         if (matched) return message.channel.sendMessage({ content: "One moment..." }).then(async (m) => {
             return await Ahni.nsfw(matched).then(async res => {
 		const a = "SPOILER_"+res.result.toString().split("/")[7]
-		const fileUp = await attach(res.result.replace("kyra.tk","locahost"), a)
+		const fileUp = await attach(process.env.AhniURL2 ? res.result.replace("https://kyra.tk", process.env.AhniURL2) : res.result, a)
                 const embed = { media: fileUp, colour: "#00FFFF"}//, description: `[Image URL](${res.result})` }
                 return m.edit({ files: fileUp, content: " ", embeds: [embed] }).catch(err => {
                     log(Style.fg.blue, `${Date(Date.now().toString()).slice(0, 25)}`);
