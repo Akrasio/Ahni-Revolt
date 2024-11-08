@@ -1,0 +1,8 @@
+{
+  "apps": [{
+    "name": "AhniDiscord.py",
+    "script": "index.py",
+    "interpreter": "python3.10",
+    "interpreter_args": "-u"
+  }]
+}
