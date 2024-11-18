@@ -12,7 +12,7 @@ print("Logging in...")
 intents = discord.Intents.default()
 intents.message_content = True
 intents.guild_messages = True
-client = commands.Bot(intents=intents,command_prefix=config.revolt_prefix)
+client = commands.AutoShardedBot(shard_count=config.shard_count,intents=intents,command_prefix=config.revolt_prefix)
 async def randomimageapi(
     ctx: discord.Message,
     url: str, *endpoint: str
