@@ -13,6 +13,7 @@ class Config:
     revolt_prefix: str
     revolt_owner_ids: list[str] = None
     lewds_api_url: str = "None"
+    shard_count: int = 1
     lewds_api_key: str = "None"
     
     @classmethod
