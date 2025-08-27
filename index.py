@@ -57,9 +57,9 @@ class Client(commands.CommandsClient):
     async def _hass(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hass", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hass", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hboobs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hboobs", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -67,9 +67,9 @@ class Client(commands.CommandsClient):
     async def _assgif(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?assgif", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?assgif", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?assgif", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?assgif", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -77,9 +77,9 @@ class Client(commands.CommandsClient):
     async def _ass(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?ass", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?ass", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?ass", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?ass", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -87,9 +87,9 @@ class Client(commands.CommandsClient):
     async def _boobs(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?boobs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?boobs", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hboobs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hboobs", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -97,9 +97,9 @@ class Client(commands.CommandsClient):
     async def _hboobs(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hboobs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hboobs", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hboobs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hboobs", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -107,9 +107,9 @@ class Client(commands.CommandsClient):
     async def _bbw(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?bbw", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?bbw", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?bbw", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?bbw", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -117,9 +117,9 @@ class Client(commands.CommandsClient):
     async def _bdsm(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?bdsm", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?bdsm", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?bdsm", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?bdsm", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -127,9 +127,9 @@ class Client(commands.CommandsClient):
     async def _blow(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?blow", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?blow", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?blow", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?blow", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -137,9 +137,9 @@ class Client(commands.CommandsClient):
     async def _feet(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?feet", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?feet", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?feet", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?feet", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -147,9 +147,9 @@ class Client(commands.CommandsClient):
     async def _hfeet(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hfeet", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hfeet", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hfeet", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hfeet", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -157,9 +157,9 @@ class Client(commands.CommandsClient):
     async def _furfuta(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?furfuta", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?furfuta", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?furfuta", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?furfuta", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -167,9 +167,9 @@ class Client(commands.CommandsClient):
     async def _furgif(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?furgif", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?furgif", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?furgif", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?furgif", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -177,9 +177,9 @@ class Client(commands.CommandsClient):
     async def _futa(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?futa", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?futa", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?futa", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?futa", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -187,9 +187,9 @@ class Client(commands.CommandsClient):
     async def _hthighs(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?athighs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?athighs", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?athighs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?athighs", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -197,9 +197,9 @@ class Client(commands.CommandsClient):
     async def _thighs(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?thighs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?thighs", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?thighs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?thighs", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -207,9 +207,9 @@ class Client(commands.CommandsClient):
     async def _gifs(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?gifs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?gifs", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?gifs", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?gifs", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -217,9 +217,9 @@ class Client(commands.CommandsClient):
     async def _sex(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?sex", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?sex", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?sex", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?sex", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -227,9 +227,9 @@ class Client(commands.CommandsClient):
     async def _femboy(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?irlfemb", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?irlfemb", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?irlfemb", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?irlfemb", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -237,9 +237,9 @@ class Client(commands.CommandsClient):
     async def _hfemboy(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?femboy", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?femboy", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?femboy", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?femboy", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -247,9 +247,9 @@ class Client(commands.CommandsClient):
     async def _slime(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?slime", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?slime", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?slime", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?slime", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -257,9 +257,9 @@ class Client(commands.CommandsClient):
     async def _pantsu(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?pantsu", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?pantsu", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?pantsu", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?pantsu", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -267,9 +267,9 @@ class Client(commands.CommandsClient):
     async def _milk(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?milk", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?milk", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?milk", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?milk", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -277,9 +277,9 @@ class Client(commands.CommandsClient):
     async def _latex(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?latex", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?latex", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?latex", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?latex", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -287,9 +287,9 @@ class Client(commands.CommandsClient):
     async def _hentai(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hentai", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hentai", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?hentai", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?hentai", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
@@ -297,16 +297,16 @@ class Client(commands.CommandsClient):
     async def _yuri(self, ctx: commands.Context):
         """ Posts the requested type of NSFW Image """
         if ctx.server_id and ctx.channel.nsfw:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?yuri", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?yuri", "file")
         elif not ctx.server_id and ctx.channel.channel_type != revolt.ChannelType.group:
-            await randomimageapi(ctx, "https://kyra.tk/nsfw/?yuri", "file")
+            await randomimageapi(ctx, "https://revoltbots.org/nsfw/?yuri", "file")
         else:
             return await ctx.channel.send("This channel must be an NSFW channel or Private DM for this to work!")
 
 
 async def main():
     async with aiohttp.ClientSession() as session:
-        client = Client(session, config.revolt_token)
+        client = Client(session, config.revolt_token, api_url=config.revolt_api_url or "https://api.revolt.chat")
         await client.start()
 
 try:
