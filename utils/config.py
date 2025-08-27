@@ -14,7 +14,7 @@ class Config:
     revolt_owner_ids: list[str] = None
     lewds_api_url: str = "None"
     lewds_api_key: str = "None"
-    
+    revolt_api_url str = "https://api.revolt.chat"
     @classmethod
     def from_dict(self, **kwargs) -> "Config":
         """ Create a Config object from a dictionary. """
