@@ -306,7 +306,7 @@ class Client(commands.CommandsClient):
 
 async def main():
     async with aiohttp.ClientSession() as session:
-        client = Client(session, config.revolt_token, api_url=config.revolt_api_url or "https://api.revolt.chat")
+        client = Client(session, config.revolt_token, api_url=config.revolt_api_url")
         await client.start()
 
 try:
