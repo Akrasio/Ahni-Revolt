@@ -12,7 +12,7 @@ class Config:
     revolt_token: str
     revolt_prefix: str
     revolt_owner_ids: list[str] = None
-    lewds_api_url: str = "None"
+    lewds_api_url: str = "https://revoltbots.org"
     lewds_api_key: str = "None"
     revolt_api_url: str = "https://api.revolt.chat"
     @classmethod
